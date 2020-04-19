@@ -24,26 +24,28 @@
 // Related Topics 动态规划
 
 package leetcode.editor.cn;
+
 //java:爬楼梯
-public class P70ClimbingStairs{
-    public static void main(String[] args){
+public class P70ClimbingStairs {
+    public static void main(String[] args) {
         Solution solution = new P70ClimbingStairs().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int climbStairs(int n) {
-        if (n <= 2) {
-            return n;
+    class Solution {
+        public int climbStairs(int n) {
+            if (n <= 2) {
+                return n;
+            }
+            int result = 0, pre = 2, prePre = 1;
+            for (int i = 3; i <= n; i++) {
+                result = pre + prePre;
+                prePre = pre;
+                pre = result;
+            }
+            return result;
         }
-        int result = 0, pre = 2, prePre = 1;
-        for (int i = 3; i <= n; i++) {
-            result = pre + prePre;
-            prePre = pre;
-            pre = result;
-        }
-        return result;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
