@@ -19,6 +19,7 @@ import java.util.*;
 public class P47PermutationsIi {
     public static void main(String[] args) {
         Solution solution = new P47PermutationsIi().new Solution();
+        System.out.println(solution.permuteUnique(new int[]{1, 3, 2}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -26,6 +27,28 @@ public class P47PermutationsIi {
         Set<List<Integer>> set = new HashSet<>();
 
         public List<List<Integer>> permuteUnique(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
+            backtrack(res, list, nums);
+            return res;
+        }
+
+        private void backtrack(List<List<Integer>> res, List<Integer> list, int[] nums) {
+            if (list.size() == nums.length) {
+                res.add(new ArrayList<>(list));
+                return;
+            }
+            for (int num : nums) {
+                if (!list.contains(num)) {
+                    list.add(num);
+                    backtrack(res, list, nums);
+                    list.remove(list.size() - 1);
+                }
+            }
+        }
+
+
+        public List<List<Integer>> permuteUnique1(int[] nums) {
             dfs(nums, 0);
             List<List<Integer>> ans = new ArrayList<>(set);
             return ans;
